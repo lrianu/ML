@@ -13725,7 +13725,7 @@ esYYY4KGJT1jjDFB4/8BlasC5VCIGUAAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>  The grid search technique allows you to specify multiple candidate values for the model's hyperparameters.  Grid search will then evaluate every combination of these candidates and return the model built with the optimal set of hyperparameters.</p>
+<p><strong>Answer: </strong>  The grid search technique allows you to specify multiple candidate values for the model's hyperparameters.  The estimator, range of hyperparameters, and a scoring function are passed in to the grid search.  Grid search will then evaluate every combination of the hyperparameter candidates and return the model built with the optimal set, based on evaluation of the estimator's performance with respect to the scoring function.</p>
 
 </div>
 </div>
@@ -13746,7 +13746,7 @@ esYYY4KGJT1jjDFB4/8BlasC5VCIGUAAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>  K-fold cross validation is a way to generate training, validation, and testing data sets while maximizing the amount of data available for training and testing.  It's done by creating multiple training and validation sets from the group called 'training'.  The training set is divided into equally sized blocks and the same model type + set of hyperparameters is trained multiple times, each time using just one of the blocks for validation and the rest for training.</p>
+<p><strong>Answer: </strong>  K-fold cross validation is a way to generate training, validation, and testing data sets while maximizing the amount of data available for training and testing.  It's done by creating multiple training and validation sets from the group called 'training'.  The training set is divided into equally sized blocks and the same model type + set of hyperparameters is trained multiple times, each time using just one of the blocks for validation and the rest for training.  Each block is used only once as a validation set, so the model is trained a total of k times.  After all k tests have been completed, the performance results on the k validation sets are reported as an average.</p>
 <p>This helps when doing a grid search for parameter optimization because you evaluate each model's goodness of fit as the average of each training/validation possibility.  Taking this average reduces the reliance on one particular set of training data and helps guard against overfitting and the impact of outliers.  The grid search will return the model with the best average evaluation metric across these multiple tests.  This provides good evidence of whether the model will generalize well.</p>
 
 </div>
@@ -13802,7 +13802,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Create a decision tree regressor object</span>
-    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 
     <span class="c1"># Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span> <span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)}</span>
